@@ -1,0 +1,16 @@
+import React from 'react';
+import Skeleton from './components/Skeleton';
+import './App.css';
+
+function App() {
+  return (
+    <>
+      <h1 className="text-3xl font-bold underline text-red-600">
+        Simple React Typescript Tailwind Sample
+      </h1>
+      <Skeleton className="h-10 w-full" times={3} />
+    </>
+  );
+}
+
+export default App;
