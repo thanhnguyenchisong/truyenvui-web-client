@@ -1,5 +1,6 @@
 import { type Href } from "@/model/Nav"
 import NavBar from "@/component/common/comic/nav/navbar"
+import { NavbarDark } from "./comic/nav/test"
 
 var menu: Href[] = [
     {
@@ -22,5 +23,5 @@ var menu: Href[] = [
 ]
 
 export default function Header() {
-    return <NavBar hrefs = {menu} />
+    return <NavbarDark />
 }
