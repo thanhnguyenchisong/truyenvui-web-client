@@ -40,15 +40,14 @@ import {
               className="pr-20"
               containerProps={{
                 className: "min-w-[288px]",
-              }}
-            />
-            <Button
+              }} crossOrigin={undefined}            />
+            {/* <Button
               size="sm"
               color="white"
               className="!absolute right-1 top-1 rounded"
             >
               Search
-            </Button>
+            </Button> */}
           </div>
         </div>
       </Navbar>

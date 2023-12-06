@@ -23,5 +23,5 @@ var menu: Href[] = [
 ]
 
 export default function Header() {
-    return <NavbarDark />
+    return <NavBar hrefs={menu}/>
 }
