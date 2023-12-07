@@ -1,5 +1,5 @@
 "use client"
-import { Href } from "@/model/Nav";
+import { Menu, MenuItem } from "@/model/Nav";
 import {
   Navbar,
   Typography,
@@ -8,14 +8,14 @@ import {
   Input,
   Collapse,
 } from "@material-tailwind/react";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NavLink from "./navlink";
 
 type NavBarProps = {
-  hrefs: Href[]
+  hrefs: MenuItem[]
 }
 
-export default function NavBar({hrefs} : NavBarProps) {
+export default function NavBar({ menu }: Menu) {
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
@@ -26,8 +26,8 @@ export default function NavBar({hrefs} : NavBarProps) {
   }, []);
 
   return (
-    <Navbar className="!absolute inset-x-0 mx-auto max-w-screen-xl px-4 py-2 lg:px-8 lg:py-4">
-      <div className="container mx-auto flex flex-wrap items-center justify-between text-blue-gray-900">
+    <Navbar className="!absolute inset-x-0 mx-auto px-4 py-2 lg:px-8 lg:py-4 bg-deep-orange-100 min-h-[74px]">
+      <div className="container mx-auto flex flex-nowrap items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
           href="#"
@@ -36,23 +36,23 @@ export default function NavBar({hrefs} : NavBarProps) {
         </Typography>
         <div className="hidden lg:block">
           <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-            {hrefs.map((href, index) => (
-                <NavLink index={index+""} href={href.href} title={href.title} />
+            {menu.map((href, index) => (
+              <NavLink key={index} href={href.href} title={href.title} />
             ))}
           </ul>
         </div>
         <div className="hidden items-center gap-x-2 lg:flex">
-          <div className="relative flex w-full gap-2 md:w-max">
+          <div className="relative flex-none w-full gap-2 md:w-max">
             <Input
               type="search"
               placeholder="Search"
               containerProps={{
-                className: "min-w-[288px]",
+                className: "min-w-[200px]",
               }}
               className="pr-20 !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
               labelProps={{
                 className: "before:content-none after:content-none",
-              }} crossOrigin={undefined}               />
+              }} crossOrigin={undefined} />
             <div className="!absolute left-3 top-[13px]">
               <svg
                 width="13"
@@ -74,7 +74,7 @@ export default function NavBar({hrefs} : NavBarProps) {
                 />
               </svg>
             </div>
-            
+
             <Button size="sm" variant="text" className="!absolute right-1 top-1 rounded-lg opacity-100">
               Search
             </Button>
@@ -83,13 +83,13 @@ export default function NavBar({hrefs} : NavBarProps) {
           <Button
             variant="text"
             size="sm"
-            className="hidden lg:inline-block">
+            className="hidden lg:inline-block flex-none">
             <span>Log In</span>
           </Button>
           <Button
             variant="gradient"
             size="sm"
-            className="hidden lg:inline-block">
+            className="hidden lg:inline-block flex-none">
             <span>Sign in</span>
           </Button>
           <div>
@@ -97,7 +97,7 @@ export default function NavBar({hrefs} : NavBarProps) {
         </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-10 w-10 max-w-[100px] max-h-[100px] text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
@@ -136,17 +136,17 @@ export default function NavBar({hrefs} : NavBarProps) {
       <Collapse open={openNav}>
         <div className="container mx-auto">
           <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-            {hrefs.map((href, index) => (
-                <NavLink index={"m:"+index} href={href.href} title={href.title} />
+            {menu.map((href, index) => (
+              <NavLink key={index} href={href.href} title={href.title} />
             ))}
           </ul>
           <div className="flex flex-col gap-x-2 sm:flex-row sm:items-center">
-            <div className="relative w-full gap-2 md:w-max">
+            <div className="relative w-full gap-2 max-w-[400px]">
               <Input
                 type="search"
                 placeholder="Search"
                 containerProps={{
-                  className: "min-w-[288px]",
+                  className: "min-w-[0px]",
                 }}
                 className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
                 labelProps={{
@@ -173,11 +173,13 @@ export default function NavBar({hrefs} : NavBarProps) {
                   />
                 </svg>
               </div>
-              <Button size="sm" className="mt-1 !absolute right-1 top-1 rounded sm:mt-0">
+              <Button size="sm" className="mt-1 !absolute right-1 top-0 rounded">
                 Search
               </Button>
             </div>
 
+          </div>
+          <div className="flex flex-col gap-2 max-w-[400px] mt-2">
             <Button
               variant="text"
               size="sm"

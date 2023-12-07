@@ -1,13 +1,8 @@
-import {type Href } from '@/model/Nav'
+import {type MenuItem } from '@/model/Nav'
 import { Typography } from '@material-tailwind/react'
 
-type NavLinkProps = Href & {index: string}
-
-export default function NavLink({index, title, href}: NavLinkProps) {
-    console.log(index);
-    console.log(title);
+export default function NavLink({title, href}: MenuItem) {
     return <Typography
-    key= {index}
     as="li"
     variant="small"
     color="blue-gray"
@@ -26,5 +21,6 @@ export default function NavLink({index, title, href}: NavLinkProps) {
     </svg>
 
     <a href={href} title={title} className="flex items-center" >{title}</a>
+
   </Typography>
 }
